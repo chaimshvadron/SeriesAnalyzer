@@ -2,34 +2,61 @@
 {
     class Program()
     {
-        static void Main(string[] args)
+        static void Main(int[] args)
         {
-            List<string> inputSeries()
+            List<int> seriesList = new List<int>();
+
+            
+            void showMenu()
+            {
+                Console.WriteLine("Series Analyzer");
+                Console.WriteLine("a. Input series");
+                Console.WriteLine("b. Display series");
+                Console.WriteLine("c. Display series in reverse");
+                Console.WriteLine("d. Display series sorted");
+                Console.WriteLine("e. Display max number");
+                Console.WriteLine("f. Display min number");
+                Console.WriteLine("g. Display average");
+                Console.WriteLine("h. Display number of elements");
+                Console.WriteLine("i. Display average");
+                Console.WriteLine("j. Exit");
+                Console.Write("Enter your choice: ");
+            }
+
+            void inputSeries()
             {
                 Console.Write("Enter at least 3 numbers: ");
                 string inputNumbers = Console.ReadLine()!;
 
                 // validation input
-                List<string> seriesList = inputNumbers.Split("").ToList();
-                return seriesList;
+                // convert to seriesList int
+                
+                
             }
 
+            void displaySeriesList(List<int> seriesList)
+            {
+                foreach (int num in seriesList)
+                {
+                    Console.Write(num);
+                }
+            }
 
             void Menu()
             {
-                // show menu
+                showMenu();
 
                 string choice = Console.ReadLine()!.ToLower();
                 switch (choice)
                 {
                     case "a":
                         {
-                            // inputSeries
+                            inputSeries();
                             break;
                         }
                     case "b":
                         {
-                            // displaySeries
+                            displaySeriesList(seriesList);
                             break;
                         }
                     case "c":
@@ -77,6 +104,10 @@
                             Console.WriteLine("invalid choice");
                             break;
                             // displayMenu
+                        }
+                    void main()
+                        {
+                            Menu();
                         }
                 }
             }
