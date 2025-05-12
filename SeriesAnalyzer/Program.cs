@@ -1,10 +1,16 @@
 ﻿namespace SeriesAnalyzer
 {
-    class Program
+    class Program()
     {
-        static void Main()
+        static void Main(string[] args)
         {
+            void Menu()
+            {
+                // show menu
 
+                int choice = int.Parse(Console.ReadLine()!);
+
+            }
         }
     }
 }
