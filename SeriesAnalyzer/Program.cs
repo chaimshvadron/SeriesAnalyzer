@@ -19,21 +19,22 @@
             // Display the menu
             void showMenu()
             {
-                Console.WriteLine(@"
-                Series Analyzer
-                a. Input series
-                b. Display series
-                c. Display series in reverse
-                d. Display series sorted
-                e. Display max number
-                f. Display min number
-                g. Display average
-                h. Display number of elements
-                i. Display sum
-                j. Exit
-                Enter your choice: ");
+                Console.WriteLine("/************************************/");
+                Console.WriteLine("Welcome to the Series Analyzer");
+                Console.WriteLine("Please choose an option:");
+                Console.WriteLine("a. Enter a series of numbers");
+                Console.WriteLine("b. Display the series");
+                Console.WriteLine("c. Display the series in reverse");
+                Console.WriteLine("d. Display the series sorted");
+                Console.WriteLine("e. Display the maximum number");
+                Console.WriteLine("f. Display the minimum number");
+                Console.WriteLine("g. Display the average");
+                Console.WriteLine("h. Display the number of elements");
+                Console.WriteLine("i. Display the sum");
+                Console.WriteLine("j. Exit");
+                Console.WriteLine("/************************************/");
             }
-
+            
             // Convert string array to list of integers
             List<int> convertFromStringToilsInt(string[] inputNumbers)
             {
