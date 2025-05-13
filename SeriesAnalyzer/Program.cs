@@ -23,13 +23,40 @@
                 Console.Write("Enter your choice: ");
             }
 
+            List<int> convertFromStringTolistInt(string inputNumbers)
+            {
+                List<int> seriesList = new List<int>();
+                string[] numbers = inputNumbers.Split(' ');
+                foreach (string number in numbers)
+                {
+                    int num = int.Parse(number);
+                    seriesList.Add(num);
+                }
+                return seriesList;
+                
+            }
+
+            bool validationInput(string inputNumbers)
+            {
+                string[] numbers = inputNumbers.Split(' ');
+                if (numbers.Length < 3)
+                {
+                    Console.WriteLine("Please enter at least 3 numbers.");
+                    return false;
+                }
+                foreach (string number in numbers)
+                {
+                    
+                }
+            }
+
             void inputSeries()
             {
                 Console.Write("Enter at least 3 numbers: ");
                 string inputNumbers = Console.ReadLine()!;
 
                 // validation input
-                // convert to seriesList int
+                // convert to seriesList type int
                 
                 
             }
