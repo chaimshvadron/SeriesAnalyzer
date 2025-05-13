@@ -5,7 +5,17 @@
 
         static void Main(string[] args)
         {
+
             List<int> seriesList = new List<int>();
+            if (validationInput(args))
+            {
+                seriesList = convertFromStringToilsInt(args);
+            }
+            else
+            {
+                seriesList = inputSeries();
+            }
+
 
             void showMenu()
             {
@@ -18,16 +28,15 @@
                 Console.WriteLine("f. Display min number");
                 Console.WriteLine("g. Display average");
                 Console.WriteLine("h. Display number of elements");
-                Console.WriteLine("i. Display average");
+                Console.WriteLine("i. Display sum");
                 Console.WriteLine("j. Exit");
                 Console.Write("Enter your choice: ");
             }
 
-            List<int> convertFromStringTolistInt(string inputNumbers)
+            List<int> convertFromStringToilsInt(string[] inputNumbers)
             {
                 List<int> seriesList = new List<int>();
-                string[] numbers = inputNumbers.Split();
-                foreach (string number in numbers)
+                foreach (string number in inputNumbers)
                 {
                     int num = int.Parse(number);
                     seriesList.Add(num);
@@ -35,15 +44,14 @@
                 return seriesList;
             }
 
-            bool validationInput(string inputNumbers)
+            bool validationInput(string [] inputNumbers)
             {
-                string[] numbers = inputNumbers.Split();
-                if (numbers.Length < 3)
+                if (inputNumbers.Length < 3)
                 {
                     Console.WriteLine("Please enter at least 3 numbers.");
                     return false;
                 }
-                foreach (string number in numbers)
+                foreach (string number in inputNumbers)
                 {
                     if (!int.TryParse(number, out int numberInt) )
                     {
@@ -60,14 +68,17 @@
                 return true;
             }
 
+
             List<int> inputSeries()
             {
                 Console.Write("Enter at least 3 numbers: ");
                 string inputNumbers = Console.ReadLine()!;
+                string[] inputNumbersArras = inputNumbers.Split();
 
-                if (validationInput(inputNumbers))
+
+                if (validationInput(inputNumbersArras))
                 {
-                    return convertFromStringTolistInt(inputNumbers);
+                    return convertFromStringToilsInt(inputNumbersArras);
                 }
                 Console.WriteLine("Enter a valid number: ");
                 return inputSeries();
