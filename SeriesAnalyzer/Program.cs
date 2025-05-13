@@ -9,7 +9,7 @@
             List<int> seriesList = new List<int>();
             if (validationInput(args))
             {
-                seriesList = convertFromStringToilsInt(args);
+                seriesList = ConvertFromStringToIntList(args);
             }
             else
             {
@@ -36,7 +36,7 @@
             }
 
             // Convert string array to list of integers
-            List<int> convertFromStringToilsInt(string[] inputNumbers)
+            List<int> ConvertFromStringToIntList(string[] inputNumbers)
             {
                 List<int> seriesList = new List<int>();
                 foreach (string number in inputNumbers)
@@ -84,7 +84,7 @@
                 // if the input is not valid, it will ask for input again
                 if (validationInput(inputNumbersArras))
                 {
-                    return convertFromStringToilsInt(inputNumbersArras);
+                    return ConvertFromStringToIntList(inputNumbersArras);
                 }
                 Console.WriteLine("Enter a valid number: ");
                 return inputSeries();
@@ -208,26 +208,28 @@
                         displaySeriesList(reversList);
                         break;
                     case "d":
-                        List<int> seriesListSOrt = SeriesSorted(seriesList);
-                        displaySeriesList(seriesListSOrt);
+                        List<int> seriesListSort = SeriesSorted(seriesList);
+                        displaySeriesList(seriesListSort);
                         break;
                     case "e":
-                        SeriesMax(seriesList);
-                        Console.WriteLine($"Max number: {SeriesMax(seriesList)}");
+                        int max = SeriesMax(seriesList);
+                        Console.WriteLine($"Max number: {max}");
                         break;
                     case "f":
-                        SeriesMin(seriesList);
-                        Console.WriteLine($"Min number: {SeriesMin(seriesList)}");
+                        int min = SeriesMin(seriesList);
+                        Console.WriteLine($"Min number: {min}");
                         break;
                     case "g":
-                        SeriesAverage(seriesList);
-                        Console.WriteLine($"Average number: {SeriesAverage(seriesList)}");
+                        float average = SeriesAverage(seriesList);
+                        Console.WriteLine($"Average number: {average}");
                         break;
                     case "h":
-                        Console.WriteLine($"Number of elements: {SeriesNumberElements(seriesList)}");
+                        int numElements = SeriesNumberElements(seriesList);
+                        Console.WriteLine($"Number of elements: {numElements}");
                         break;
                     case "i":
-                        Console.WriteLine($"Sum of series: {calculateSumSeries(seriesList)}");
+                        int sum = calculateSumSeries(seriesList);
+                        Console.WriteLine($"Sum of series: {sum}");
                         break;
                     case "j":
                         Console.WriteLine("Exiting...");
