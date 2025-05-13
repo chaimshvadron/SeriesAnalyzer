@@ -97,6 +97,7 @@
                 {
                     Console.Write(num + " ");
                 }
+                Console.WriteLine();
             }
 
             // Convert the list to reverse and return the list
@@ -164,7 +165,8 @@
             {
                 int NumElements = SeriesNumberElements(seriesList);
                 int sum = calculateSumSeries(seriesList);
-                float average = sum / NumElements;
+                float average = (float)sum / NumElements;
+
                 return average;
             }
 
