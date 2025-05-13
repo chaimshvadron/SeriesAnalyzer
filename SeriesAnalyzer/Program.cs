@@ -1,11 +1,11 @@
 ﻿namespace SeriesAnalyzer
 {
-    class Program()
+    class Program
     {
+
         static void Main(string[] args)
         {
             List<int> seriesList = new List<int>();
-
 
             void showMenu()
             {
@@ -23,24 +23,21 @@
                 Console.Write("Enter your choice: ");
             }
 
-
             List<int> convertFromStringTolistInt(string inputNumbers)
             {
                 List<int> seriesList = new List<int>();
-                string[] numbers = inputNumbers.Split(' ');
+                string[] numbers = inputNumbers.Split();
                 foreach (string number in numbers)
                 {
                     int num = int.Parse(number);
                     seriesList.Add(num);
                 }
                 return seriesList;
-
             }
-
 
             bool validationInput(string inputNumbers)
             {
-                string[] numbers = inputNumbers.Split(' ');
+                string[] numbers = inputNumbers.Split();
                 if (numbers.Length < 3)
                 {
                     Console.WriteLine("Please enter at least 3 numbers.");
@@ -48,41 +45,49 @@
                 }
                 foreach (string number in numbers)
                 {
-                    if (!double.TryParse(number, out _))
+                    if (!int.TryParse(number, out int numberInt) )
                     {
                         Console.WriteLine($"Invalid input: {number} is not a number.");
                         return false;
+                    } 
+                    else if (numberInt < 0)
+                    {
+                        Console.WriteLine($"Invalid input: {number} is a negative number.");
+                        return false;
                     }
+
                 }
                 return true;
             }
 
-
-            void inputSeries()
+            List<int> inputSeries()
             {
                 Console.Write("Enter at least 3 numbers: ");
                 string inputNumbers = Console.ReadLine()!;
 
-                // validation input
-                // convert to seriesList type int
-
-
+                if (validationInput(inputNumbers))
+                {
+                    return convertFromStringTolistInt(inputNumbers);
+                }
+                Console.WriteLine("Enter a valid number: ");
+                return inputSeries();
             }
+
 
             void displaySeriesList(List<int> seriesList)
             {
                 foreach (int num in seriesList)
                 {
-                    Console.Write(num);
+                    Console.Write(num + " ");
                 }
             }
+
 
             List<int> convertListToReverse(List<int> seriesList)
             {
                 List<int> seriesListRevers = new List<int>();
-                Console.WriteLine(seriesList.Count);
-                for (int i = seriesList.Count - 1; i >= 0; i--)
-                    
+                int lengthList = SeriesNumberElements(seriesList);
+                for (int i = lengthList - 1; i >= 0; i--)
                 {
                     Console.WriteLine(i);
                     seriesListRevers.Add(seriesList[i]);
@@ -90,79 +95,134 @@
                 return seriesListRevers;
             }
 
-            List<int> displaySeriesSorted(List<int> seriesList)
+
+            List<int> SeriesSorted(List<int> seriesList)
             {
                 List<int> seriesListSorted = new List<int>(seriesList);
-                seriesListSorted .Sort();
+                seriesListSorted.Sort();
                 return seriesListSorted;
             }
 
-            void Menu()
+
+            int SeriesMax(List<int> seriesList)
+            {
+                int max = 0;
+                foreach (int num in seriesList)
+                {
+                    if (num > max)
+                    {
+                        max = num;
+                    }
+                }
+                return max;
+            }
+
+
+            int SeriesMin(List<int> seriesList)
+            {
+                int min = seriesList[0];
+                foreach (int num in seriesList)
+                {
+                    if (num < min)
+                    {
+                        min = num;
+                    }
+                }
+                return min;
+            }
+
+
+            float SeriesAverage(List<int> seriesList)
+            {
+                int NumElements = SeriesNumberElements(seriesList);
+                int sum = calculateSumSeries(seriesList);
+                float average = sum / NumElements;
+                return average;
+            }
+
+
+            int SeriesNumberElements(List<int> seriesList)
+            {
+                int numElements = 0;
+                foreach (int num in seriesList)
+                {
+                    numElements += 1;
+                }
+                return numElements;
+            }
+
+
+            int calculateSumSeries(List<int> seriesList)
+            {
+                int sum = 0;
+                foreach (int num in seriesList)
+                {
+                    sum += num;
+                }
+                return sum;
+            }
+
+
+            bool Menu()
             {
                 showMenu();
                 string choice = Console.ReadLine()!.ToLower();
                 switch (choice)
                 {
                     case "a":
-                        {
-                            inputSeries();
-                            break;
-                        }
+                        seriesList = inputSeries();
+                        break;
                     case "b":
-                        {
-                            displaySeriesList(seriesList);
-                            break;
-                        }
+                        displaySeriesList(seriesList);
+                        break;
                     case "c":
-                        {
-                            convertListToReverse(seriesList);
-                            break;
-                        }
+                        List<int> reversList = convertListToReverse(seriesList);
+                        displaySeriesList(reversList);
+                        break;
                     case "d":
-                        {
-                            break;
-                        }
+                        List<int> seriesListSOrt = SeriesSorted(seriesList);
+                        displaySeriesList(seriesListSOrt);
+                        break;
                     case "e":
-                        {
-                            // displaySeriesMax
-                            break;
-                        }
+                        SeriesMax(seriesList);
+                        Console.WriteLine($"Max number: {SeriesMax(seriesList)}");
+                        break;
                     case "f":
-                        {
-                            // displaySeriesMin
-                            break;
-                        }
+                        SeriesMin(seriesList);
+                        Console.WriteLine($"Min number: {SeriesMin(seriesList)}");
+                        break;
                     case "g":
-                        {
-                            // displaySeriesAverage
-                            break;
-                        }
+                        SeriesAverage(seriesList);
+                        Console.WriteLine($"Average number: {SeriesAverage(seriesList)}");
+                        break;
                     case "h":
-                        {
-                            // displaySeriesNumberElements
-                            break;
-                        }
+                        Console.WriteLine($"Number of elements: {SeriesNumberElements(seriesList)}");
+                        break;
                     case "i":
-                        {
-                            // displaySeriesAverege
-                            break;
-                        }
+                        Console.WriteLine($"Sum of series: {calculateSumSeries(seriesList)}");
+                        break;
                     case "j":
-                        {
-                            // exit
-                            break;
-                        }
+                        Console.WriteLine("Exiting...");
+                        return true;
                     default:
-                        {
-                            Console.WriteLine("invalid choice");
-                            break;
-                            // displayMenu
-                        }
-
+                        Console.WriteLine("Invalid choice");
+                        break;
                 }
+                return false;
             }
-            displaySeriesList(displaySeriesSorted(new List<int> { 4, 1, 9, 3, 4 }));
-            Menu();
+
+
+            void displayLoopMenu()
+            {
+                bool exit;
+                do
+                {
+                    exit = Menu();
+                }
+                while (!exit);
+            }
+
+            displayLoopMenu();
         }
     }
 }
