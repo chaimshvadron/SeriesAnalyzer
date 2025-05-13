@@ -240,6 +240,9 @@
                         Console.WriteLine("Invalid choice");
                         break;
                 }
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
                 return false;
             }
 
