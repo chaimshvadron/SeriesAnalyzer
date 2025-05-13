@@ -2,14 +2,14 @@
 {
     class Program()
     {
-        static void Main(int[] args)
+        static void Main(string[] args)
         {
             List<int> seriesList = new List<int>();
 
-            
+
             void showMenu()
             {
-                Console.WriteLine("Series Analyzer");
+                Console.WriteLine("\nSeries Analyzer");
                 Console.WriteLine("a. Input series");
                 Console.WriteLine("b. Display series");
                 Console.WriteLine("c. Display series in reverse");
@@ -34,7 +34,7 @@
                     seriesList.Add(num);
                 }
                 return seriesList;
-                
+
             }
 
 
@@ -65,8 +65,8 @@
 
                 // validation input
                 // convert to seriesList type int
-                
-                
+
+
             }
 
             void displaySeriesList(List<int> seriesList)
@@ -79,12 +79,22 @@
 
             List<int> convertListToReverse(List<int> seriesList)
             {
-                List<int> sriesListRevers = new List<int>();
-                for (int i = seriesList.Count; i >= 0; i--)
+                List<int> seriesListRevers = new List<int>();
+                Console.WriteLine(seriesList.Count);
+                for (int i = seriesList.Count - 1; i >= 0; i--)
+                    
                 {
-                    sriesListRevers.Add(seriesList[i]);
+                    Console.WriteLine(i);
+                    seriesListRevers.Add(seriesList[i]);
                 }
-                return sriesListRevers;
+                return seriesListRevers;
+            }
+
+            List<int> displaySeriesSorted(List<int> seriesList)
+            {
+                List<int> seriesListSorted = new List<int>(seriesList);
+                seriesListSorted .Sort();
+                return seriesListSorted;
             }
 
             void Menu()
@@ -105,12 +115,11 @@
                         }
                     case "c":
                         {
-                            // displaySeriesRevers
+                            convertListToReverse(seriesList);
                             break;
                         }
                     case "d":
                         {
-                            // displaySeriesSorted
                             break;
                         }
                     case "e":
@@ -149,12 +158,11 @@
                             break;
                             // displayMenu
                         }
-                    void main()
-                        {
-                            Menu();
-                        }
+
                 }
             }
+            displaySeriesList(displaySeriesSorted(new List<int> { 4, 1, 9, 3, 4 }));
+            Menu();
         }
     }
 }
