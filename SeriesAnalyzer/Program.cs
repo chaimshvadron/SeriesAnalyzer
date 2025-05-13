@@ -16,23 +16,25 @@
                 seriesList = inputSeries();
             }
 
-
+            // Display the menu
             void showMenu()
             {
-                Console.WriteLine("\nSeries Analyzer");
-                Console.WriteLine("a. Input series");
-                Console.WriteLine("b. Display series");
-                Console.WriteLine("c. Display series in reverse");
-                Console.WriteLine("d. Display series sorted");
-                Console.WriteLine("e. Display max number");
-                Console.WriteLine("f. Display min number");
-                Console.WriteLine("g. Display average");
-                Console.WriteLine("h. Display number of elements");
-                Console.WriteLine("i. Display sum");
-                Console.WriteLine("j. Exit");
-                Console.Write("Enter your choice: ");
+                Console.WriteLine(@"
+                Series Analyzer
+                a. Input series
+                b. Display series
+                c. Display series in reverse
+                d. Display series sorted
+                e. Display max number
+                f. Display min number
+                g. Display average
+                h. Display number of elements
+                i. Display sum
+                j. Exit
+                Enter your choice: ");
             }
 
+            // Convert string array to list of integers
             List<int> convertFromStringToilsInt(string[] inputNumbers)
             {
                 List<int> seriesList = new List<int>();
@@ -44,6 +46,7 @@
                 return seriesList;
             }
 
+            // Validate input
             bool validationInput(string [] inputNumbers)
             {
                 if (inputNumbers.Length < 3)
@@ -68,14 +71,16 @@
                 return true;
             }
 
-
+            // input series and validate and return the list numbers
+            // if the input is not valid, it will ask for input again
             List<int> inputSeries()
             {
-                Console.Write("Enter at least 3 numbers: ");
+                Console.Write("Enter a series of numbers separated by spaces (3 or more): ");
                 string inputNumbers = Console.ReadLine()!;
                 string[] inputNumbersArras = inputNumbers.Split();
 
-
+                // Check if the input is valid
+                // if the input is not valid, it will ask for input again
                 if (validationInput(inputNumbersArras))
                 {
                     return convertFromStringToilsInt(inputNumbersArras);
@@ -84,7 +89,7 @@
                 return inputSeries();
             }
 
-
+            // Display the series list
             void displaySeriesList(List<int> seriesList)
             {
                 foreach (int num in seriesList)
@@ -93,28 +98,39 @@
                 }
             }
 
-
+            // Convert the list to reverse and return the list
             List<int> convertListToReverse(List<int> seriesList)
             {
                 List<int> seriesListRevers = new List<int>();
                 int lengthList = SeriesNumberElements(seriesList);
                 for (int i = lengthList - 1; i >= 0; i--)
                 {
-                    Console.WriteLine(i);
                     seriesListRevers.Add(seriesList[i]);
                 }
                 return seriesListRevers;
             }
 
-
+            // Sort the list and return the list
             List<int> SeriesSorted(List<int> seriesList)
             {
                 List<int> seriesListSorted = new List<int>(seriesList);
-                seriesListSorted.Sort();
+                int lengthList = SeriesNumberElements(seriesList);
+                for (int i = 0; i < lengthList - 1; i++)
+                {
+                    for (int j = 0; j < lengthList - i - 1; j++)
+                    {
+                        if (seriesListSorted[j] > seriesListSorted[j + 1])
+                        {
+                            int temp = seriesListSorted[j];
+                            seriesListSorted[j] = seriesListSorted[j + 1];
+                            seriesListSorted[j + 1] = temp;
+                        }
+                    }
+                }
                 return seriesListSorted;
             }
 
-
+            // Calculate the max number in the list and return the number
             int SeriesMax(List<int> seriesList)
             {
                 int max = 0;
@@ -128,7 +144,7 @@
                 return max;
             }
 
-
+            // Calculate the min number in the list and return the number
             int SeriesMin(List<int> seriesList)
             {
                 int min = seriesList[0];
@@ -142,7 +158,7 @@
                 return min;
             }
 
-
+            // Calculate the average of the list and return the number           
             float SeriesAverage(List<int> seriesList)
             {
                 int NumElements = SeriesNumberElements(seriesList);
@@ -151,7 +167,7 @@
                 return average;
             }
 
-
+            // Calculate the number of elements in the list and return the number
             int SeriesNumberElements(List<int> seriesList)
             {
                 int numElements = 0;
@@ -162,7 +178,7 @@
                 return numElements;
             }
 
-
+            // Calculate the sum of the list and return the number
             int calculateSumSeries(List<int> seriesList)
             {
                 int sum = 0;
@@ -173,7 +189,7 @@
                 return sum;
             }
 
-
+            // Display the menu and get the user choice
             bool Menu()
             {
                 showMenu();
@@ -222,7 +238,7 @@
                 return false;
             }
 
-
+            // Display the menu and loop until the user chooses to exit
             void displayLoopMenu()
             {
                 bool exit;
@@ -232,7 +248,8 @@
                 }
                 while (!exit);
             }
-
+            // Call the display loop menu function
+            // to display the menu and get the user choice
             displayLoopMenu();
         }
     }
