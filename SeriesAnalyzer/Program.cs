@@ -32,9 +32,9 @@
                 Console.WriteLine("h. Display the number of elements");
                 Console.WriteLine("i. Display the sum");
                 Console.WriteLine("j. Exit");
-                Console.WriteLine("/************************************/");
+                Console.WriteLine("\n /************************************/");
             }
-            
+
             // Convert string array to list of integers
             List<int> convertFromStringToilsInt(string[] inputNumbers)
             {
