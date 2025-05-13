@@ -23,6 +23,7 @@
                 Console.Write("Enter your choice: ");
             }
 
+
             List<int> convertFromStringTolistInt(string inputNumbers)
             {
                 List<int> seriesList = new List<int>();
@@ -36,6 +37,7 @@
                 
             }
 
+
             bool validationInput(string inputNumbers)
             {
                 string[] numbers = inputNumbers.Split(' ');
@@ -46,9 +48,15 @@
                 }
                 foreach (string number in numbers)
                 {
-                    
+                    if (!double.TryParse(number, out _))
+                    {
+                        Console.WriteLine($"Invalid input: {number} is not a number.");
+                        return false;
+                    }
                 }
+                return true;
             }
+
 
             void inputSeries()
             {
@@ -69,10 +77,19 @@
                 }
             }
 
+            List<int> convertListToReverse(List<int> seriesList)
+            {
+                List<int> sriesListRevers = new List<int>();
+                for (int i = seriesList.Count; i >= 0; i--)
+                {
+                    sriesListRevers.Add(seriesList[i]);
+                }
+                return sriesListRevers;
+            }
+
             void Menu()
             {
                 showMenu();
-
                 string choice = Console.ReadLine()!.ToLower();
                 switch (choice)
                 {
